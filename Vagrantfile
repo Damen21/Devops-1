@@ -1,7 +1,7 @@
 Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/jammy64"
 
-  # Port forwarding for your Predobro app
+  # Port forwarding
   config.vm.network "forwarded_port", guest: 5203, host: 5203
   config.vm.network "forwarded_port", guest: 1433, host: 1433
 
