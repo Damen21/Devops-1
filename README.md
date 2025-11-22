@@ -62,4 +62,5 @@ sleep 1
 links2 http://localhost:5203
 ```
 Ta odsek skripte v `~/.bashrc` doda zgoraj naveden del kode, ki jo izvede ob prijavi preko SSH. `Bashrc` požene `links2`, ki prikazuje spletno starn `http://localhost:5203`. Grafični prikaz je viden v sliki navedeni spodaj:
-![alt text](image.png)
+![alt text](links2_index.png)
+![alt text](links2_login.png)
