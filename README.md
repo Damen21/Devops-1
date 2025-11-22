@@ -64,3 +64,22 @@ links2 http://localhost:5203
 Ta odsek skripte v `~/.bashrc` doda zgoraj naveden del kode, ki jo izvede ob prijavi preko SSH. `Bashrc` požene `links2`, ki prikazuje spletno starn `http://localhost:5203`. Grafični prikaz je viden v sliki navedeni spodaj:
 ![alt text](links2_index.png)
 ![alt text](links2_login.png)
+
+## Cloud-init
+
+Na domačem Proxmox strežniku e bila postavljen Ubuntu Server 24.04 navidezni stroj, ki je bil kasneje pretvorjen v Devops-cloud TEMPLATE. Template samo kloniramo, nastavimo uporabnike, SSH ključe in omrežne nastavitve. 
+
+Na strežniku je bil nameščen MSSQL strežnik s .NET aplikacijo Predobro, dostopno na https://IP:5203. Geslo `sa` uporabnika MSSQL SUPB je bilo spremenjeno na `yourStrong!Password`, zaradi napake napake pri branju gesla s oklepaji. Program je bil zapakiran v Systemd serivce zagonsko datoteko in omogočen. Program poganja uporabnik `cloud`.
+
+Iz cloud-init konfiguracije je bil odstranjenih nekaj nepotrebnih modulov (wireguard, ubuntu-pro, snap, ...) in inicializiran z uporabo ukaza:
+
+```bash
+cloud-init clean --machine-id
+```
+
+Disk je bil tudi zmanjšan, da zasede slika minimalno prostora:
+
+```bash
+fstrtim -av
+```
+Navidezni stroj sva nato ugasnila in v virtualizatorju Proxmox ustvarila TEMPLATE. Ta se sedaj enostavno klonira in zažene v novem navideznem stroju.
